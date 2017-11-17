@@ -106,19 +106,27 @@ public:
 		return param;
 	}
 
-	template <class TLight>
-	TLight* createLight(rack::Vec const& pos, int const lightId)
-	{
-		assert( this->module != nullptr );
-
-		TLight* const light = new TLight;
-
+	template<class TModuleLightWidget>
+	rack::ModuleLightWidget *createLight(rack::Vec pos, int firstLightId) {
+		rack::ModuleLightWidget *light = new TModuleLightWidget();
 		light->box.pos = pos;
-		light->module = this->module;
-		light->lightId = lightId;
-		rack::ModuleWidget::addChild(light);
+		light->module = module;
+		light->firstLightId = firstLightId;
 		return light;
 	}
+	// template <class TLight>
+	// TLight* createLight(rack::Vec const& pos, int const lightId)
+	// {
+	// 	assert( this->module != nullptr );
+
+	// 	TLight* const light = new TLight;
+
+	// 	light->box.pos = pos;
+	// 	light->module = this->module;
+	// 	light->lightId = lightId;
+	// 	rack::ModuleWidget::addChild(light);
+	// 	return light;
+	// }
 };
 
 #endif
